@@ -1,5 +1,18 @@
 const { setHeadlessWhen } = require('@codeceptjs/configure');
 
+function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}
+
+build_id=makeid(5);
+
 // turn on headless mode when running with HEADLESS=true environment variable
 // export HEADLESS=true && npx codeceptjs run
 setHeadlessWhen(process.env.HEADLESS);
@@ -12,7 +25,7 @@ const caps = {
   'os': 'osx',
   'os_version': 'catalina',
   'name': 'Codecept test using Playwright',
-  'build': 'CodeceptJS on BrowserStack 2',
+  'build': 'CodeceptJS on BrowserStack ' + build_id,
   'browserstack.username': process.env.BROWSERSTACK_USERNAME ,
   'browserstack.accessKey': process.env.BROWSERSTACK_ACCESS_KEY ,
   'client.playwrightVersion': clientPlaywrightVersion  // example '1.11.0'
@@ -23,7 +36,7 @@ const caps_firefox = {
   'os': 'osx',
   'os_version': 'catalina',
   'name': 'Codecept test using Playwright',
-  'build': 'CodeceptJS on BrowserStack 2',
+  'build': 'CodeceptJS on BrowserStack ' + build_id,
   'browserstack.username': process.env.BROWSERSTACK_USERNAME ,
   'browserstack.accessKey': process.env.BROWSERSTACK_ACCESS_KEY ,
   'client.playwrightVersion': clientPlaywrightVersion  // example '1.11.0'
@@ -33,7 +46,7 @@ const caps_edge = {
   'os': 'osx',
   'os_version': 'catalina',
   'name': 'Codecept test using Playwright',
-  'build': 'CodeceptJS on BrowserStack 2',
+  'build': 'CodeceptJS on BrowserStack ' + build_id,
   'browserstack.username': process.env.BROWSERSTACK_USERNAME ,
   'browserstack.accessKey': process.env.BROWSERSTACK_ACCESS_KEY ,
   'client.playwrightVersion': clientPlaywrightVersion  // example '1.11.0'

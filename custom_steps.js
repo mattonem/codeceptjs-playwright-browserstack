@@ -9,4 +9,8 @@ module.exports = function() {
 		const { I } = inject();
 	    I.executeScript(_ => {}, `browserstack_executor: ${JSON.stringify({action: 'setSessionStatus',arguments: {status: 'failed',reason: 'failed'}})}`);
 	  });
+	event.dispatcher.on(event.test.started, function (test) {
+		const { I } = inject();
+	    I.executeScript(_ => {}, `browserstack_executor: ${JSON.stringify({action: 'setSessionName',arguments: {name: test.title}})}`);
+	  });
 }
